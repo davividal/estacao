@@ -2,12 +2,11 @@
 // Created by davi on 11/7/17.
 //
 
-#include "humidade.h"
+#include "umidade.h"
 #include "mqtt.h"
 
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdio.h>
 
 int data[5] = {0, 0, 0, 0, 0};
 
@@ -64,7 +63,7 @@ void read_dht_data() {
         }
 
         snprintf(humidade, 5, "%.1f", h);
-        mqtt_pub("humidade", humidade);
+        mqtt_pub("umidade", humidade);
         printf("%.1f %%\n", h);
     }
 }
@@ -73,7 +72,7 @@ void *thread_dht(void *pVoid) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) {
-        printf("Configurando sensor de humidade\n");
+        printf("Configurando sensor de umidade\n");
 //        setup_dht();
 
         read_dht_data();
@@ -82,7 +81,7 @@ void *thread_dht(void *pVoid) {
 #pragma clang diagnostic pop
 }
 
-void humidade(void) {
+void umidade(void) {
     pthread_t t1 = 0;
 
     printf("Criando thread\n");

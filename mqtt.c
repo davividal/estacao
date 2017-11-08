@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "mqtt.h"
+#include "debug.h"
 
 MQTTClient client;
 
@@ -17,7 +18,7 @@ void setup_mqtt() {
         MQTTClient_destroy(&client);
     }
 
-    printf("Conectando em %s...\n", BROKER);
+    TRACE((1, "Conectando em %s...\n", BROKER));
     MQTTClient_create(&client, BROKER, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
     conn_opts.keepAliveInterval = 600;
     conn_opts.cleansession = 1;
@@ -43,7 +44,7 @@ void mqtt_pub(char *topic, char *measure) {
     strcpy(dstTopic, ROOT_TOPIC);
     strcat(dstTopic, topic);
 
-    printf("Publicando [%s] em [%s]...\n", measure, dstTopic);
+    TRACE((1, "Publicando [%s] em [%s]...\n", measure, dstTopic));
     pubmsg.payload = measure;
     pubmsg.payloadlen = sizeof(measure);
     pubmsg.qos = QOS;

@@ -2,8 +2,8 @@
 // Created by davi on 11/7/17.
 //
 
-#ifndef ESTACAO_HUMIDADE_H
-#define ESTACAO_HUMIDADE_H
+#ifndef ESTACAO_UMIDADE_H
+#define ESTACAO_UMIDADE_H
 
 #include <wiringPi.h>
 #include <pthread.h>
@@ -13,12 +13,10 @@
 
 extern int data[5];
 
-//void setup_dht();
-
 void read_dht_data();
 
 void *thread_dht(void *pVoid);
 
-void humidade(void);
+void umidade(void);
 
-#endif //ESTACAO_HUMIDADE_H
+#endif //ESTACAO_UMIDADE_H

@@ -1,20 +1,20 @@
-#include <stdio.h>
 #include <wiringPi.h>
 #include <stdlib.h>
 
-#include "humidade.h"
+#include "umidade.h"
 #include "mqtt.h"
+#include "debug.h"
 
 int main() {
-    printf("Configurando wiringPi\n");
+    TRACE((1, "Configurando wiringPi\n"));
     if (wiringPiSetup() == -1) {
         exit(1);
     }
 
     mqtt();
 
-    printf("Inicializando sensores...\n");
-    humidade();
+    TRACE((1, "Inicializando sensores...\n"));
+    umidade();
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
