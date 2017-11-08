@@ -24,6 +24,8 @@ void setup_mqtt(void);
 
 void mqtt(void);
 
+void mqtt_pub_double(char *topic, double measure);
+
 void mqtt_pub(char *topic, char *measure);
 
 extern MQTTClient client;

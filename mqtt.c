@@ -33,6 +33,13 @@ void mqtt() {
     setup_mqtt();
 }
 
+void mqtt_pub_double(char *topic, double measure) {
+    char m[5];
+    TRACE("Convertendo medida [%.1f] para string...\n", measure);
+    snprintf(m, 5, "%.1f", measure);
+    mqtt_pub(topic, m);
+}
+
 void mqtt_pub(char *topic, char *measure) {
     MQTTClient_message pubmsg = MQTTClient_message_initializer;
     MQTTClient_deliveryToken token;

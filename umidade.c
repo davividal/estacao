@@ -58,15 +58,13 @@ void read_dht_data() {
      */
     if ((j >= 40) &&
         (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF))) {
-        char humidade[5];
         float h = (float) ((data[0] << 8) + data[1]) / 10;
         if (h > 100) {
             h = data[0];    // for DHT11
         }
 
-        snprintf(humidade, 5, "%.1f", h);
-        mqtt_pub("umidade", humidade);
-        printf("%.1f %%\n", h);
+        mqtt_pub_double("umidade", h);
+        printf("Umidade: %.1f %%\n", h);
     }
 }
 
@@ -80,11 +78,11 @@ void *thread_dht(void *pVoid) {
 #pragma clang diagnostic pop
 }
 
-void umidade(void) {
+void * umidade(void *pVoid) {
     pthread_t t1 = 0;
 
-    TRACE("Criando thread\n");
+    TRACE("Criando thread de umidade\n");
     pthread_create(&t1, NULL, thread_dht, NULL);
-    TRACE("Iniciando thread\n");
+    TRACE("Iniciando thread de umidade\n");
     pthread_join(t1, NULL);
 }
