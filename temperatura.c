@@ -39,7 +39,7 @@ void *thread_temperatura(void *pVoid) {
     while (1) {
         double temperatura = read_temp();
         mqtt_pub_double("temperatura", temperatura);
-        printf("Temperatura: %.1f ºC\n", temperatura);
+        printf("Temperatura: %.1f °C\n", temperatura);
     }
 #pragma clang diagnostic pop
 }
