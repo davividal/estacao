@@ -4,6 +4,7 @@
 
 #include "umidade.h"
 #include "mqtt.h"
+#include "debug.h"
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -17,6 +18,7 @@ void read_dht_data() {
 
     data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 
+    TRACE("Configurando sensor de umidade\n");
     /* pull pin down for 18 milliseconds */
     pinMode(DHT_PIN, OUTPUT);
     digitalWrite(DHT_PIN, LOW);
@@ -72,9 +74,6 @@ void *thread_dht(void *pVoid) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) {
-        printf("Configurando sensor de umidade\n");
-//        setup_dht();
-
         read_dht_data();
         delay(2000); /* wait 2 seconds before next read */
     }
@@ -84,8 +83,8 @@ void *thread_dht(void *pVoid) {
 void umidade(void) {
     pthread_t t1 = 0;
 
-    printf("Criando thread\n");
+    TRACE("Criando thread\n");
     pthread_create(&t1, NULL, thread_dht, NULL);
-    printf("Iniciando thread\n");
+    TRACE("Iniciando thread\n");
     pthread_join(t1, NULL);
 }

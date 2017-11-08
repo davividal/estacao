@@ -6,14 +6,14 @@
 #include "debug.h"
 
 int main() {
-    TRACE((1, "Configurando wiringPi\n"));
+    TRACE("Configurando wiringPi\n");
     if (wiringPiSetup() == -1) {
         exit(1);
     }
 
     mqtt();
 
-    TRACE((1, "Inicializando sensores...\n"));
+    TRACE("Inicializando sensores...\n");
     umidade();
 
 #pragma clang diagnostic push
