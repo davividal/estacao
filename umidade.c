@@ -78,11 +78,13 @@ void *thread_dht(void *pVoid) {
 #pragma clang diagnostic pop
 }
 
-void * umidade(void *pVoid) {
+void *umidade(void *pVoid) {
     pthread_t t1 = 0;
 
     TRACE("Criando thread de umidade\n");
     pthread_create(&t1, NULL, thread_dht, NULL);
     TRACE("Iniciando thread de umidade\n");
     pthread_join(t1, NULL);
+
+    return NULL;
 }

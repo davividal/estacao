@@ -17,6 +17,6 @@ void read_dht_data();
 
 void *thread_dht(void *pVoid);
 
-void * umidade(void *pVoid);
+void *umidade(void *pVoid);
 
 #endif //ESTACAO_UMIDADE_H

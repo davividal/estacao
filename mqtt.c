@@ -57,7 +57,7 @@ void mqtt_pub(char *topic, char *measure) {
     pubmsg.qos = QOS;
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, dstTopic, &pubmsg, &token);
-    TRACE("Waiting for up to %d seconds for publication of %s\n"
+    TRACE("Waiting for up to %d seconds for publication of [%s]"
                   "on topic %s for client with ClientID: %s\n",
           (int) (TIMEOUT / 1000), pubmsg.payload, dstTopic, CLIENTID);
     MQTTClient_waitForCompletion(client, token, TIMEOUT);

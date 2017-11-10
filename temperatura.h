@@ -11,6 +11,6 @@ double read_temp(void);
 
 void *thread_temperatura(void *pVoid);
 
-void * temperatura(void *pVoid);
+void *temperatura(void *pVoid);
 
 #endif //ESTACAO_TEMPERATURA_H

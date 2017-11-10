@@ -44,11 +44,13 @@ void *thread_temperatura(void *pVoid) {
 #pragma clang diagnostic pop
 }
 
-void * temperatura(void *pVoid) {
+void *temperatura(void *pVoid) {
     pthread_t t1 = 0;
 
     TRACE("Criando thread de temperatura\n");
     pthread_create(&t1, NULL, thread_temperatura, NULL);
     TRACE("Iniciando thread de temperatura\n");
     pthread_join(t1, NULL);
+
+    return NULL;
 }

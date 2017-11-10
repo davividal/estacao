@@ -151,4 +151,6 @@ void *pressao(void *pVoid) {
     pthread_create(&t1, NULL, thread_pressao, NULL);
 
     pthread_join(t1, NULL);
+
+    return NULL;
 }
