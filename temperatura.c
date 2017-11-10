@@ -5,9 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <pthread.h>
+#include <wiringPi.h>
 #include "temperatura.h"
 #include "mqtt.h"
 #include "debug.h"
+#include "config.h"
 
 double read_temp(void) {
     FILE *ds18b20 = fopen(SENSOR_TEMPERATURA, "r");
@@ -40,6 +42,7 @@ void *thread_temperatura(void *pVoid) {
         double temperatura = read_temp();
         mqtt_pub_double("temperatura", temperatura);
         printf("Temperatura: %.1f °C\n", temperatura);
+        delay(INTERVALO_TEMPERATURA);
     }
 #pragma clang diagnostic pop
 }

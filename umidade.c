@@ -5,6 +5,7 @@
 #include "umidade.h"
 #include "mqtt.h"
 #include "debug.h"
+#include "config.h"
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -73,7 +74,7 @@ void *thread_dht(void *pVoid) {
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) {
         read_dht_data();
-        delay(2000); /* wait 2 seconds before next read */
+        delay(INTERVALO_UMIDADE);
     }
 #pragma clang diagnostic pop
 }

@@ -9,8 +9,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <wiringPi.h>
 #include "pressao.h"
 #include "mqtt.h"
+#include "config.h"
 
 float pressure(void) {
     int file;
@@ -135,12 +137,15 @@ float pressure(void) {
 void *thread_pressao(void *pVoid) {
     float pressao;
 
+    pressure();
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) {
         pressao = pressure();
         mqtt_pub_double("pressao", pressao);
         printf("Pressão: %.1f hPa\n", pressao);
+        delay(INTERVALO_PRESSAO);
     }
 #pragma clang diagnostic pop
 }

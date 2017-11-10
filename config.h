@@ -1,0 +1,13 @@
+//
+// Created by davi on 11/9/17.
+//
+
+#ifndef ESTACAO_MAIN_H
+#define ESTACAO_MAIN_H
+
+#define INTERVALO_UMIDADE 10000
+#define INTERVALO_TEMPERATURA 10000
+#define INTERVALO_PRESSAO 10000
+#define INTERVALO_VENTO 10000
+
+#endif //ESTACAO_MAIN_H

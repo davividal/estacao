@@ -8,6 +8,7 @@
 #include "vento.h"
 #include "mqtt.h"
 #include "debug.h"
+#include "config.h"
 
 static time_t inicio_volta;
 static double tempo_volta;
@@ -47,7 +48,7 @@ void *thread_vento(void *pVoid) {
         tempo_volta = 0;
         mqtt_pub_double("vento", v);
         printf("Velocidade: %.1f km/h (%.1f m/s)\n", v, v/3.6);
-        delay(6000);
+        delay(INTERVALO_VENTO);
     }
 #pragma clang diagnostic pop
 }
