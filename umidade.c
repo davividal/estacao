@@ -12,7 +12,7 @@
 
 int data[5] = {0, 0, 0, 0, 0};
 
-void read_dht_data() {
+double read_dht_data() {
     int lastState = HIGH;
     uint8_t counter = 0;
     uint8_t j = 0, i;
@@ -64,16 +64,25 @@ void read_dht_data() {
             h = data[0];    // for DHT11
         }
 
-        mqtt_pub_double("umidade", h);
-        printf("Umidade: %.1f %%\n", h);
+        return h;
     }
+
+    return 0;
 }
 
 void *thread_dht(void *pVoid) {
+    double h;
+    sensor_umidade = 1;
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) {
-        read_dht_data();
+        h = read_dht_data();
+
+        if (h) {
+            mqtt_pub_double("umidade", h);
+            printf("Umidade: %.1f %%\n", h);
+        }
         delay(INTERVALO_UMIDADE);
     }
 #pragma clang diagnostic pop
@@ -82,9 +91,9 @@ void *thread_dht(void *pVoid) {
 void *umidade(void *pVoid) {
     pthread_t t1 = 0;
 
-    TRACE("Criando thread de umidade\n");
+    printf("Criando thread de umidade\n");
     pthread_create(&t1, NULL, thread_dht, NULL);
-    TRACE("Iniciando thread de umidade\n");
+    printf("Iniciando thread de umidade\n");
     pthread_join(t1, NULL);
 
     return NULL;

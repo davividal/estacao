@@ -7,7 +7,7 @@ set(CUSTOM_INCLUDE ${RASP_GCC_PATH}/usr/src)
 
 add_compile_options(-Wall -Wno-missing-noreturn -Wno-unknown-pragmas)
 
-add_compile_options(-DAUTH)
+#add_compile_options(-DAUTH)
 #add_compile_options(-DDEBUG)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 

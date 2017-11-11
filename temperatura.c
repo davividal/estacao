@@ -36,6 +36,8 @@ double read_temp(void) {
 }
 
 void *thread_temperatura(void *pVoid) {
+    sensor_temperatura = 1;
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) {

@@ -13,7 +13,7 @@
 
 extern int data[5];
 
-void read_dht_data();
+double read_dht_data();
 
 void *thread_dht(void *pVoid);
 

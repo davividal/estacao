@@ -6,10 +6,13 @@
 #define ESTACAO_VENTO_H
 
 // GPIO 24 = pino 5
-#define PINO 5
+#define PINO_ANEMOMETRO 5
 
-// Raio, medido com paquímetro
-#define R 0.0155
+// Diametro em milimetros, medido com paquímetro
+#define DIAMETRO 3.21
+
+// Raio: (DIAMETRO (mm)/100 (mm/m)) / 2
+#define R (DIAMETRO/200)
 
 void conta_pulsos(void);
 

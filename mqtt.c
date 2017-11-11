@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "mqtt.h"
 #include "debug.h"
+#include "config.h"
 
 MQTTClient client;
 
@@ -25,8 +26,11 @@ void setup_mqtt() {
 
     if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS) {
         printf("Failed to connect, return code %d\n", rc);
+        terminate = 1;
         exit(-1);
     }
+
+    conexao_mqtt = 1;
 }
 
 void mqtt() {

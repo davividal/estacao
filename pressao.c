@@ -13,6 +13,7 @@
 #include "pressao.h"
 #include "mqtt.h"
 #include "config.h"
+#include "debug.h"
 
 float pressure(void) {
     int file;
@@ -80,8 +81,10 @@ float pressure(void) {
     // Read 2 bytes of data from register(0xF6)
     // temp msb, temp lsb
     write(file, reg, 1);
-    if (read(file, data, 2) != 2) {
-        printf("Erorr : Input/output Erorr \n");
+    ssize_t leitura = read(file, data, 2);
+    TRACE("leitura do sensor de pressao: [%d]\n", leitura);
+    if (leitura != 2) {
+        printf("Error : Input/output Error\n");
         exit(1);
     }
 
@@ -137,7 +140,10 @@ float pressure(void) {
 void *thread_pressao(void *pVoid) {
     float pressao;
 
-    pressure();
+    do {
+        sensor_pressao = pressure() > 0;
+        delay(1000);
+    } while (!sensor_pressao);
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
