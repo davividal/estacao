@@ -8,11 +8,11 @@
 // GPIO 24 = pino 5
 #define PINO_ANEMOMETRO 5
 
-// Diametro em milimetros, medido com paquímetro
-#define DIAMETRO 3.21
+// Diametro em metros, medido com paquímetro e convertido com calculadora
+#define DIAMETRO 0.0321
 
 // Raio: (DIAMETRO (mm)/100 (mm/m)) / 2
-#define R (DIAMETRO/200)
+#define R (DIAMETRO/2)
 
 void conta_pulsos(void);
 
