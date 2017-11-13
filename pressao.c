@@ -131,7 +131,7 @@ float pressure(void) {
     X1 = (pressure / 256) * (pressure / 256);
     X1 = (X1 * 3038) / 65536;
     X2 = ((7357) * pressure) / 65536;
-    pressure = ((pressure + (X1 + X2 + 3791) / 15) / -1000);
+    pressure = ((pressure + (X1 + X2 + 3791) / 15) / -1051);
 
     // Output data to screen
     return (pressure);
