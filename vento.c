@@ -16,12 +16,12 @@ struct timespec inicio_volta;
 static int voltas = 0;
 static double tempo_voltas[10];
 volatile double frequency;
+static double sum = 0;
+double tempo_volta = 0;
 
 void conta_pulsos(void) {
-    double tempo_volta = 0;
     struct timespec fim_volta;
     int i;
-    double sum = 0;
 
     if (inicio_volta.tv_sec != 0) {
         clock_gettime(CLOCK_MONOTONIC, &fim_volta);
@@ -51,7 +51,10 @@ void conta_pulsos(void) {
 double velocidade() {
     double v = 0;
 
-    v = 2 * frequency * R * M_PI * 3.6;
+    TRACE("soma tempos [%lf]; volta: [%lf]; freq: [%lf]\n", sum, tempo_volta, frequency);
+    TRACE("f [%lf], R [%lf], pi [%lf]\n", frequency, R, M_PI);
+    v = 2 * frequency * R * M_PI * 3.6 * FATOR_CALIBRACAO;
+    sum = 0;
 
     return v;
 }

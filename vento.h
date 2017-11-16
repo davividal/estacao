@@ -12,7 +12,9 @@
 #define DIAMETRO 0.0321
 
 // Raio: (DIAMETRO (mm)/100 (mm/m)) / 2
-#define R (DIAMETRO/2)
+#define R 0.023
+
+#define FATOR_CALIBRACAO 11.3
 
 void conta_pulsos(void);
 
