@@ -4,6 +4,7 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage[pdftex]{hyperref}
 \graphicspath{ {images/} }
 
 \title{Estação Meteorológica IoT}
@@ -67,7 +68,7 @@ P=P_0 \cdot e^\frac{-M \cdot g(z-z_0)}{R \cdot T}
 
 A equação \ref{eq_pressao} é a equação barométrica. Nela, $P_0$ é a pressão na altitude $z_0$, $R$ é a constante universal dos gases perfeitos, $M$ é a massa molar do gás em questão e $g$ é a aceleração da gravidade no ponto $z$. A unidade de medida é Pascal, mas a quantidade usada normalmente é o hectopascal (hPa).\par
 
-O sensor que utilizamos requer uma calibração antes do uso. Essa calibração está descrita, passo a passo, no datasheet. Mas, basicamente, precisamos ler os valores de calibração da $E^2PROM$ do sensor, realizar uma aquisição e calcular o valor da pressão de acordo com os valores de calibração e a fórmula descrita no datasheet.\par
+O sensor que utilizamos requer uma calibração antes do uso. Essa calibração está descrita, passo a passo, no datasheet \cite{bmp180ds}. Mas, basicamente, precisamos ler os valores de calibração da $E^2PROM$ do sensor, realizar uma aquisição e calcular o valor da pressão de acordo com os valores de calibração e a fórmula descrita no datasheet.\par
 
 Os dados de calibração encontram-se em registradores específicos, descritos no datasheet, em uma tabela conforme a figura \ref{calibracao_pressao_1}.
 
@@ -196,16 +197,22 @@ A montagem final pode ser conferida na figura \ref{montagem_final}.
 \bibitem{dht22ds}
 Aosong Electronics.
 Datasheet: Digital-output relative humidity \& temperature sensor/module DHT22.
-Disponível em: https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf .
+Disponível em: \url{https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf}.
+Acesso em 16/11/2017.
+\bibitem{bmp180ds}
+Bosch Sensortec.
+Datasheet:BMP180 Digital pressure sensor.
+Disponível em: \url{https://cdn-shop.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf}.
 Acesso em 16/11/2017.
 \bibitem{ds18b22ds}
 Maxim Integrated.
-DS18B20 Programmable Resolution 1-Wire Digital Thermometer.
-Disponível em: http://datasheets.maximintegrated.com/en/ds/DS18B20.pdf .
+Datasheet: DS18B20 Programmable Resolution 1-Wire Digital Thermometer.
+Disponível em: \url{http://datasheets.maximintegrated.com/en/ds/DS18B20.pdf}.
+Acesso em 16/11/2017.
 \bibitem{wikiestacao}
 Wikipedia.
 Estação Meteorológica.
-Disponível em: https://pt.wikipedia.org/wiki/Esta%C3%A7%C3%A3o_meteorol%C3%B3gica .
+Disponível em: \url{https://pt.wikipedia.org/wiki/Esta%C3%A7%C3%A3o_meteorol%C3%B3gica}.
 Acesso em 16/11/2017.
 \end{thebibliography}
 \end{document}
